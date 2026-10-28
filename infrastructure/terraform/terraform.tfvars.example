@@ -1,0 +1,35 @@
+# LibraSpace — Terraform variable values
+# Copy to terraform.tfvars and fill in your values.
+# NEVER commit terraform.tfvars to version control.
+
+aws_region   = "us-east-1"
+project_name = "libraspace"
+environment  = "production"
+
+# VPC and networking
+vpc_cidr           = "10.10.0.0/16"
+availability_zones = ["us-east-1a", "us-east-1b"]
+
+# Get the latest Amazon Linux 2023 AMI ID for your region:
+# aws ec2 describe-images --owners amazon \
+#   --filters "Name=name,Values=al2023-ami-2023*" "Name=architecture,Values=x86_64" \
+#   --query 'sort_by(Images,&CreationDate)[-1].ImageId' --output text
+ami_id        = "ami-REPLACE_ME"
+instance_type = "t3.micro"
+
+# key_name = "your-key-pair-name"  # Optional: for SSH access
+
+# Auto Scaling
+min_capacity     = 1
+desired_capacity = 1  # Start small for demo
+max_capacity     = 2
+
+# RDS
+db_instance_class = "db.t3.micro"
+db_storage_gb     = 20
+
+# Application
+app_port = 5000
+
+# HTTPS (optional — leave empty for HTTP)
+# certificate_arn = "arn:aws:acm:us-east-1:ACCOUNT_ID:certificate/CERT_ID"

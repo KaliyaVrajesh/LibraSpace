@@ -1,0 +1,29 @@
+version: '3.9'
+
+# LibraSpace — Local Development Docker Compose
+# Provides PostgreSQL (dev + test databases) for local development.
+# The Flask backend and React frontend are run directly on the host.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: libraspace_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: libraspace
+      POSTGRES_PASSWORD: libraspace_dev_pass
+      POSTGRES_MULTIPLE_DATABASES: libraspace_dev,libraspace_test
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-multiple-dbs.sh:/docker-entrypoint-initdb.d/init-multiple-dbs.sh
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U libraspace -d libraspace_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    name: libraspace_postgres_data

@@ -1,0 +1,73 @@
+# ============================================================
+# LibraSpace — .gitignore
+# ============================================================
+
+# ── Secrets and credentials (NEVER commit) ──────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials
+secrets.json
+terraform.tfvars
+!terraform.tfvars.example
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+.tox/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# ── Node / Frontend ──────────────────────────────────────────
+node_modules/
+frontend/dist/
+frontend/build/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Terraform ────────────────────────────────────────────────
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ── IDE / Editor ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ── Deployment artifacts ─────────────────────────────────────
+dist/
+*.zip
+*.tar.gz
+
+# ── Database ─────────────────────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
